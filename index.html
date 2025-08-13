@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>مرگ تدریجی یک رویا</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+      max-width: 480px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 10px;
+      border-radius: 7px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    audio {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 3px 7px rgba(0, 0, 0, 0.7);
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="artist-logo.png" alt="Artist Logo" class="logo" />
+    <h2>✨مرگ تدریجی یک رویا✨</h2>
+    <h3>❤️‍🩹 کتابی برای زندگی کردن ❤️‍🩹</h3>
+    <audio id="player" controls autoplay>
+      <source id="source" src="" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    const songs = [
+      "track1.mp3",
+      "track2.mp3",
+      "track3.mp3",
+      "track4.mp3",
+
+    ];
+
+    let current = Math.floor(Math.random() * songs.length);
+    const player = document.getElementById("player");
+    const source = document.getElementById("source");
+
+    function playSong(index) {
+      source.src = songs[index];
+      player.load();
+      player.play();
+    }
+
+    function playNext() {
+      current = (current + 1) % songs.length;
+      playSong(current);
+    }
+
+    player.addEventListener("ended", playNext);
+    playSong(current);
+  </script>
+</body>
+</html>
